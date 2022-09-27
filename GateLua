@@ -1,0 +1,13 @@
+local module = {}
+local gateCaching = {};
+
+return function(name, gateTime)
+
+	local uniqueTick = tick() + math.random();
+	gateCaching[name] = uniqueTick;
+
+	task.wait(gateTime);
+
+	return uniqueTick == gateCaching[name]
+
+end
